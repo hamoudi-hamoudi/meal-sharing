@@ -25,57 +25,57 @@ router.use("/meals", mealsRouter);
 // Respond with all meals in the future (relative to the when datetime)
 app.get("/future-meals", async (req, res) => {
   try {
-    const row = await knex.raw("SELECT * FROM meal WHERE `when` > now()");
-    res.status(200).json(row[0]);
+    const meals = await knex.raw("SELECT * FROM meal WHERE `when` > now()");
+    res.status(200).json(meals[0]);
   } catch (e) {
-    res.status(404).json(e);
+    res.status(500).json(e);
   }
 });
 
 //Respond with all meals in the past (relative to the when datetime)
 app.get("/past-meals", async (req, res) => {
   try {
-    const row = await knex.raw("SELECT * FROM meal WHERE `when` < now()");
-    res.status(200).json(row[0]);
+    const meals = await knex.raw("SELECT * FROM meal WHERE `when` < now()");
+    res.status(200).json(meals[0]);
   } catch (e) {
-    res.status(404).json(e);
+    res.status(500).json(e);
   }
 });
 
 //Respond with all meals sorted by ID
 app.get("/all-meals", async (req, res) => {
   try {
-    const row = await knex.raw("SELECT * FROM meal");
-    res.status(200).json(row[0]);
+    const meals = await knex.raw("SELECT * FROM meal");
+    res.status(200).json(meals[0]);
   } catch (e) {
-    res.status(404).json(e);
+    res.status(500).json(e);
   }
 });
 //Respond with the first meal (meaning with the minimum id)
 app.get("/first-meal", async (req, res) => {
   try {
-    const row = await knex.raw("SELECT * FROM meal ORDER BY id limit 1");
-    if (row[0].length > 0) {
-      res.status(200).json(row[0][0]);
+    const meal = await knex.raw("SELECT * FROM meal ORDER BY id ASC limit 1");
+    if (meal[0].length > 0) {
+      res.status(200).json(meal[0][0]);
     } else {
       res.status(404).json("there are no meals");
     }
   } catch (e) {
-    res.status(404).json(e);
+    res.status(500).json(e);
   }
 });
 
 // 	Respond with the last meal (meaning with the maximum id)
 app.get("/last-meal", async (req, res) => {
   try {
-    const row = await knex.raw("SELECT * FROM meal ORDER BY id desc limit 1");
-    if (row[0].length > 0) {
-      res.status(200).json(row[0][0]);
+    const meal = await knex.raw("SELECT * FROM meal ORDER BY id desc limit 1");
+    if (meal[0].length > 0) {
+      res.status(200).json(meal[0][0]);
     } else {
       res.status(404).json("there are no meals");
     }
   } catch (e) {
-    res.status(404).json(e);
+    res.status(500).json(e);
   }
 });
 
