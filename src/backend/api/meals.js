@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("../database");
+const valid = require("./controller");
 const requiredColumns = [
   "title",
   "description",
@@ -10,9 +11,7 @@ const requiredColumns = [
   "created_date",
   "price",
 ];
-const valid = (input, array) => {
-  return array.every((c) => input.hasOwnProperty(c) && input[c] !== "");
-};
+
 router.get("/", async (req, res) => {
   try {
     const meals = await knex("meal").select("title");
@@ -53,7 +52,7 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
   const updatedMeal = req.body;
-  if (isNaN(id) || !valid(updatedMeal)) {
+  if (isNaN(id) || !valid(updatedMeal, requiredColumns)) {
     res.status(404).json(` ${id} not valide please provide a number`);
   } else {
     try {
@@ -88,4 +87,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
-module.exports = valid;

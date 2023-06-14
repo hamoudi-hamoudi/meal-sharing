@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const knex = require("../database");
-const valid = require("./meals");
+const valid = require("./controller");
 
 const requiredColumns = [
   "number_of_guests",
