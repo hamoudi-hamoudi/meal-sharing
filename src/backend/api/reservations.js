@@ -44,13 +44,13 @@ router
   .route("/:id")
   .get(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const reservation = await knex("reservation").where({ id });
         reservation.length === 0
-          ? res.status(200).json("no matching reservation")
+          ? res.status(404).json("no matching reservation")
           : res.status(200).json(reservation);
       } catch (err) {
         res.status(500).json(err);
@@ -60,14 +60,14 @@ router
   .put(async (req, res) => {
     const id = req.params.id;
     const updatedReservation = req.body;
-    if (isNaN(id) || !id || !valid(updatedReservation, requiredColumns)) {
+    if (isNaN(id) || !valid(updatedReservation, requiredColumns)) {
       res.status(404).json(` ${id} not valide please provide a the right info`);
     } else {
       try {
         updatedReservation.id = id;
         const reservation = await knex("Reservation").where({ id });
         if (reservation.length === 0) {
-          res.status(200).json(`Reservation not found`);
+          res.status(404).json(`Reservation not found`);
         } else {
           await knex("Reservation").where({ id }).update(updatedReservation);
           res
@@ -83,13 +83,13 @@ router
   })
   .delete(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const reservation = await knex("reservation").where({ id });
         if (reservation.length === 0) {
-          res.status(200).json(`Reservation not found`);
+          res.status(404).json(`Reservation not found`);
         } else {
           await knex("reservation").where({ id }).del();
           res
