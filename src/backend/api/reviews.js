@@ -36,13 +36,13 @@ router
   .route("/:id")
   .get(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const review = await knex("review").where({ id });
         review.length === 0
-          ? res.status(200).json("no matching review")
+          ? res.status(404).json("no matching review")
           : res.status(200).json(review);
       } catch (err) {
         res.status(500).json(err);
@@ -52,14 +52,14 @@ router
   .put(async (req, res) => {
     const id = req.params.id;
     const updatedreview = req.body;
-    if (isNaN(id) || !id || !valid(updatedreview, requiredCollumns)) {
+    if (isNaN(id) || !valid(updatedreview, requiredCollumns)) {
       res.status(404).json(` ${id} not valide please provide a the right info`);
     } else {
       try {
         updatedreview.id = id;
         const review = await knex("review").where({ id });
         if (review.length === 0) {
-          res.status(200).json(`review with this id not found`);
+          res.status(404).json(`review with this id not found`);
         } else {
           await knex("review").where({ id }).update(updatedreview);
           res
@@ -73,13 +73,13 @@ router
   })
   .delete(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const review = await knex("review").where({ id });
         if (review.length === 0) {
-          res.status(200).json(`review not found`);
+          res.status(404).json(`review not found`);
         } else {
           await knex("review").where({ id }).del();
           res.status(200).json(`review with id ${id} deleted successfully`);

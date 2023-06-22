@@ -50,14 +50,14 @@ router
         if ("sortKey" in query) {
           const column = query.sortKey;
           const sortBy = query.sortDir;
-          if (sortBy) {
+          if (sortBy === "asc" || sortBy === "desc") {
             meals = await sortingMeals(column, sortBy);
           } else {
             meals = await sortingMeals(column);
           }
         }
         return meals.length === 0
-          ? res.status(200).json("no meal found")
+          ? res.status(404).json("no meal found")
           : res.status(200).json(meals);
       } else {
         meals = await knex("meal").select("title");
@@ -86,13 +86,13 @@ router
   .route("/:id")
   .get(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const meal = await knex("meal").select("title").where({ id });
         meal.length === 0
-          ? res.status(200).json("no meal with this id")
+          ? res.status(404).json("no meal with this id")
           : res.status(200).json(meal);
       } catch (err) {
         res.status(500).json(err);
@@ -109,7 +109,7 @@ router
       try {
         updatedMeal.id = id;
         const meal = await knex("meal").where({ id });
-        if (meal.length === 0) res.status(200).json("meal not found");
+        if (meal.length === 0) res.status(404).json("meal not found");
         else {
           await knex("meal").where({ id }).update(updatedMeal);
           res
@@ -123,12 +123,12 @@ router
   })
   .delete(async (req, res) => {
     const id = req.params.id;
-    if (isNaN(id) || !id) {
+    if (isNaN(id)) {
       res.status(404).json(` ${id} not valide please provide a number`);
     } else {
       try {
         const meal = await knex("meal").where({ id });
-        if (meal.length === 0) res.status(200).json(`meal not found`);
+        if (meal.length === 0) res.status(404).json(`meal not found`);
         else {
           await knex("meal").where({ id }).del();
           res.status(200).json(`meal with id ${id} deleted successfully`);
@@ -140,13 +140,13 @@ router
   });
 router.get("/:meal_id/reviews", async (req, res) => {
   const id = req.params["meal_id"];
-  if (isNaN(id) || !id || id === "meal_id") {
+  if (isNaN(id)) {
     return res.status(404).json(` ${id} not valide please provide a number`);
   } else {
     try {
       const review = await mealReviews(id);
       return review.length === 0
-        ? res.status(200).json("no meal found or review found")
+        ? res.status(404).json("no meal found or review found")
         : res.status(200).json(review);
     } catch (err) {
       res.status(500).json(err);
