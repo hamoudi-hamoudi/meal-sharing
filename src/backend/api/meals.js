@@ -16,7 +16,7 @@ router
   .route("/")
   .get(async (req, res) => {
     try {
-      const meals = await knex("meal").select("title");
+      const meals = await knex("meal");
       res.status(200).json(meals);
     } catch (err) {
       res.status(500).json(err);
