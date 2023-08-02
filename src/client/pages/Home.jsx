@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import Footer from "../components/Footer";
 import "./home.css";
 import { Link } from "react-router-dom";
-
+import hyf from "../assets/images/hyf.png";
 function Home() {
   return (
     <>
       <header className="header">
+        <img src={hyf} alt=" hyf" />
         <h1 className="headline">Meal-Sharing</h1>
       </header>
       <div className="content">

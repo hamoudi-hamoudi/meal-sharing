@@ -2,6 +2,9 @@
   color: #000000;
   text-align: center;
   padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .headline {
@@ -25,7 +28,11 @@
 .to-meals {
   padding: 10px;
   background-color: #62a8e6;
+  margin-top: 30px;
 }
 .to-meals:hover {
   background-color: #0485d5;
+}
+img {
+  width: 200px;
 }
