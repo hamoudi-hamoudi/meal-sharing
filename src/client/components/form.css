@@ -19,7 +19,8 @@ label {
 }
 
 input,
-button {
+button,
+textarea {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;

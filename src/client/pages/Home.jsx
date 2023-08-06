@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import "./home.css";
 import { Link } from "react-router-dom";
 import hyf from "../assets/images/hyf.png";
+import { IoFastFoodOutline } from "react-icons/io5";
 function Home() {
   return (
     <>
@@ -21,7 +22,9 @@ function Home() {
           memories. creating an extraordinary dining experience for you and your
           loved ones. <b>Bon appétit!</b> <br />
           <button className="to-meals">
-            <Link to={"/meals"}>go to meals</Link>
+            <Link to={"/meals"}>
+              <IoFastFoodOutline /> go to meals
+            </Link>
           </button>
         </p>
       </div>

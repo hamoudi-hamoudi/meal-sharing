@@ -2,18 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./navBar.css";
 import { Link } from "react-router-dom";
+import {
+  IoFastFoodOutline,
+  IoBrushOutline,
+  IoStorefrontOutline,
+} from "react-icons/io5";
 
 function NavBar() {
   return (
     <nav className="nav">
       <Link to={"/"}>
-        <p>Home</p>
+        <p>
+          <IoStorefrontOutline /> Home
+        </p>
       </Link>
       <Link to={"/meals"}>
-        <p>Meals</p>
+        <p>
+          <IoFastFoodOutline /> Meals
+        </p>
       </Link>
       <Link to={"/review"}>
-        <p>Review</p>
+        <p>
+          <IoBrushOutline /> Review
+        </p>
       </Link>
     </nav>
   );

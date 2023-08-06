@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "./reservationForm.css";
+import "./form.css";
 import axios from "axios";
 import Modal from "../components/Modal";
+import {
+  IoPersonAddOutline,
+  IoCallOutline,
+  IoAtSharp,
+  IoRestaurantOutline,
+  IoPersonCircleOutline,
+} from "react-icons/io5";
 
 function Form({ id }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +45,6 @@ function Form({ id }) {
   };
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(reservation);
     const {
       number_of_guests,
       contact_phonenumber,
@@ -68,7 +74,9 @@ function Form({ id }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Guests</label>
+        <label>
+          <IoPersonAddOutline /> Guests
+        </label>
         <input
           type="number"
           name="number_of_guests"
@@ -77,7 +85,9 @@ function Form({ id }) {
         />
       </div>
       <div>
-        <label>name</label>
+        <label>
+          <IoPersonCircleOutline /> name
+        </label>
         <input
           type="text"
           name="contact_name"
@@ -86,7 +96,9 @@ function Form({ id }) {
         />
       </div>
       <div>
-        <label>email</label>
+        <label>
+          <IoAtSharp /> email
+        </label>
         <input
           type="email"
           name="contact_email"
@@ -95,7 +107,9 @@ function Form({ id }) {
         />
       </div>
       <div>
-        <label>phone</label>
+        <label>
+          <IoCallOutline /> phone
+        </label>
         <input
           type="tel"
           name="contact_phonenumber"
@@ -104,7 +118,9 @@ function Form({ id }) {
         />
       </div>
       <div>
-        <button type="submit">submit</button>
+        <button type="submit">
+          Submit <IoRestaurantOutline />
+        </button>
       </div>
       <Modal isOpen={isOpen} />
     </form>

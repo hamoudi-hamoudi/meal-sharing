@@ -5,7 +5,9 @@ import { MealsContext } from "../contexts/Mealscontext";
 import "./mealList.css";
 
 function Meals() {
-  const meals = useContext(MealsContext);
+  const data = useContext(MealsContext);
+  const meals = data.meals;
+
   if (!meals || meals.length === 0) {
     return <p>Loading meals data...</p>;
   }
