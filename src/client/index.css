@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import 'theme.css';
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import "theme.css";
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
 }
 
 #root {
-  padding-left: 30%;
-  padding-right: 30%;
+  padding-left: 7%;
+  padding-right: 7%;
   height: 100vh;
 }
 
@@ -35,13 +35,6 @@ button {
   color: rgb(255, 255, 255);
   padding: 5px;
   font-size: 17px;
-}
-
-@media screen and (max-width: 1400px) {
-  #root {
-    padding-left: 30%;
-    padding-right: 30%;
-  }
 }
 
 @media screen and (max-width: 750px) {

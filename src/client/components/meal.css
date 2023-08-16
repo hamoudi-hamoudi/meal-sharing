@@ -1,0 +1,17 @@
+.mealCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  .mealCard {
+    width: 100%;
+  }
+}
