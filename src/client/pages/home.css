@@ -1,3 +1,6 @@
+.front-page {
+  width: 100%;
+}
 .header {
   color: #000000;
   text-align: center;
@@ -33,6 +36,18 @@
 .to-meals:hover {
   background-color: #0485d5;
 }
+.content {
+  margin-bottom: 20px;
+}
 img {
   width: 200px;
+}
+@media screen and (max-width: 750px) {
+  img {
+    width: 80%;
+  }
+  .header {
+    flex-flow: column;
+    align-items: center;
+  }
 }

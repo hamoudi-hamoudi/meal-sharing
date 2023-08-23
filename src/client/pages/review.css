@@ -1,5 +1,5 @@
 select {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -10,9 +10,18 @@ select {
 
 select:focus {
   outline: none;
-  box-shadow: 0 0 4px #007bff;
+  box-shadow: 0 0 4px #ffdb58;
 }
 
 option {
   text-align: center;
+}
+.review-card {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  background-color: #ffdb58;
+  margin-top: 20px;
+  align-items: center;
+  border-radius: 5%;
 }

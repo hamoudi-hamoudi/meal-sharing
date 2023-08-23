@@ -25,8 +25,10 @@ router
   .get(async (req, res) => {
     let query = req.query;
     let meals;
+    const { title, column, direction } = query;
     try {
-      const meals = await knex("meal");
+      meals = await mealTitle(title);
+      meals = await sortingMeals(column, direction, meals);
       res.status(200).json(meals);
     } catch (err) {
       res.status(500).json(err);

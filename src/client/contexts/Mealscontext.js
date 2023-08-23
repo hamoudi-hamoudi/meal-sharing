@@ -7,10 +7,21 @@ export const MealsContext = createContext();
 export const MealsProvider = ({ children }) => {
   const [meals, setMeals] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(null);
+  const [sortBy, setSortBy] = useState({
+    column: "",
+    direction: "",
+  });
 
   const fetchMeals = async () => {
     try {
-      const getMeals = await axios.get("http://localhost:3000/api/meals");
+      const getMeals = await axios.get("http://localhost:3000/api/meals", {
+        params: {
+          title: searchTerm,
+          column: sortBy.column,
+          direction: sortBy.direction,
+        },
+      });
 
       setMeals(getMeals.data);
     } catch (err) {
@@ -20,7 +31,7 @@ export const MealsProvider = ({ children }) => {
   useEffect(() => {
     fetchMeals();
     ftechReview();
-  }, []);
+  }, [searchTerm, sortBy]);
 
   const ftechReview = async () => {
     try {
@@ -30,7 +41,7 @@ export const MealsProvider = ({ children }) => {
       console.log(err);
     }
   };
-  const value = { meals, reviews };
+  const value = { meals, reviews, setSearchTerm, setSortBy };
   return (
     <MealsContext.Provider value={value}>{children}</MealsContext.Provider>
   );

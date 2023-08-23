@@ -1,15 +1,35 @@
 .mealCard {
   display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  flex-flow: column;
   align-items: center;
   width: 30%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: #ffdb58;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   height: 100%;
+  padding: 10px;
+  text-align: center;
 }
-
+.img {
+  width: 100%;
+  height: 100%;
+}
+.img img {
+  width: 300px;
+  height: 200px;
+  transition: transform 0.3s;
+  border-radius: 5%;
+}
+.mealCard img:hover {
+  transform: scale(1.1);
+}
+@media screen and (max-width: 1100px) and (min-width: 750px) {
+  .mealCard {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 750px) {
   .mealCard {
     width: 100%;

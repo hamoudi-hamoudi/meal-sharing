@@ -11,8 +11,7 @@ function Reservation() {
   const [isAvaillable, setAvaillable] = useState(true);
 
   const data = useContext(MealsContext);
-  const meals = data.meals;
-
+  const { meals } = data;
   if (!meals || meals.length === 0) {
     return <p>Loading meals data...</p>;
   }
@@ -26,7 +25,7 @@ function Reservation() {
   if (max_reservations === 0) {
     setAvaillable(false);
   }
-  console.log(meal);
+
   return (
     <div className="meal-reservation">
       <div>
@@ -35,6 +34,7 @@ function Reservation() {
           price={`${price} €`}
           description={description}
           id={id}
+          max_reservations={max_reservations}
         />
       </div>
 
