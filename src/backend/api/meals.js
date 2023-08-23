@@ -29,6 +29,8 @@ router
     try {
       meals = await mealTitle(title);
       meals = await sortingMeals(column, direction, meals);
+      console.log("randome");
+      console.log(meals);
       res.status(200).json(meals);
     } catch (err) {
       res.status(500).json(err);

@@ -10,7 +10,7 @@ import {
   IoRestaurantOutline,
   IoPersonCircleOutline,
 } from "react-icons/io5";
-
+import { webServerUrl } from "../constants";
 function Form({ id }) {
   const [isOpen, setIsOpen] = useState(false);
   const [reservation, setReservation] = useState({
@@ -25,7 +25,7 @@ function Form({ id }) {
   const createReservation = async (res) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/reservations",
+        webServerUrl + "/api/reservations",
         res
       );
       if (response.status === 201) {

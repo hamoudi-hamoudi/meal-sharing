@@ -10,6 +10,8 @@ import {
   IoBrushOutline,
 } from "react-icons/io5";
 
+import { webServerUrl } from "../constants";
+
 function ReviewForm({ id }) {
   const [isOpen, setIsOpen] = useState(false);
   const [review, setReview] = useState({
@@ -22,10 +24,7 @@ function ReviewForm({ id }) {
 
   const createReview = async (res) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/reviews",
-        res
-      );
+      const response = await axios.post(webServerUrl + "/api/reviews", res);
 
       if (response.status === 201) {
         setIsOpen(true);
