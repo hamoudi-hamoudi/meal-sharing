@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-
+import { webServerUrl } from "../constants";
 export const MealsContext = createContext();
 
 export const MealsProvider = ({ children }) => {
@@ -15,7 +15,7 @@ export const MealsProvider = ({ children }) => {
 
   const fetchMeals = async () => {
     try {
-      const getMeals = await axios.get("http://localhost:3000/api/meals", {
+      const getMeals = await axios.get(webServerUrl + "/api/meals", {
         params: {
           title: searchTerm,
           column: sortBy.column,
@@ -35,7 +35,7 @@ export const MealsProvider = ({ children }) => {
 
   const ftechReview = async () => {
     try {
-      const getReviews = await axios.get(`http://localhost:3000/api/reviews`);
+      const getReviews = await axios.get(webServerUrl + "/api/reviews");
       setReviews(getReviews.data);
     } catch (err) {
       console.log(err);
