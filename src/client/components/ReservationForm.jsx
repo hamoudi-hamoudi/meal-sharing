@@ -30,6 +30,9 @@ function Form({ id }) {
       );
       if (response.status === 201) {
         setIsOpen(true);
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 2000);
         setReservation({
           number_of_guests: 1,
           meal_id: id,
@@ -122,7 +125,7 @@ function Form({ id }) {
           Submit <IoRestaurantOutline />
         </button>
       </div>
-      <Modal isOpen={isOpen} />
+      <Modal isOpen={isOpen} text={true} />
     </form>
   );
 }

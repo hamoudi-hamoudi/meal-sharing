@@ -29,6 +29,10 @@ function ReviewForm({ id }) {
 
       if (response.status === 201) {
         setIsOpen(true);
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 2000);
+
         setReview({
           title: "",
           description: "",
@@ -59,7 +63,7 @@ function ReviewForm({ id }) {
       created_date: new Date().toLocaleDateString("en-CA"),
     }));
   }
-  console.log(review);
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -102,7 +106,7 @@ function ReviewForm({ id }) {
           Submit <IoThumbsUpOutline />
         </button>
       </div>
-      <Modal isOpen={isOpen} />
+      <Modal isOpen={isOpen} text={false} />
     </form>
   );
 }

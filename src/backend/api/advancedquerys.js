@@ -20,7 +20,13 @@ const availableReservations = async (boolean) => {
 };
 
 const mealTitle = async (title) => {
-  return await knex("meal").where("title", "like", `%${title}%`);
+  let meals;
+  if (!title) meals = await knex("meal");
+  else {
+    meals = await knex("meal").where("title", "ILIKE", `%${title}%`);
+  }
+
+  return meals;
 };
 
 const mealsDates = async (when, time) => {
@@ -36,8 +42,11 @@ const limitedMeals = async (nb) => {
   return await knex.select("*").from("meal").limit(nb);
 };
 
-const sortingMeals = async (column, sortBy) => {
-  return await knex("meal").orderBy(column, sortBy);
+const sortingMeals = async (column, sortBy, meals) => {
+  if (!column || !sortBy) return meals;
+  else {
+    return await knex("meal").orderBy(column, sortBy);
+  }
 };
 const mealReviews = async (id) => {
   return await knex("meal")
