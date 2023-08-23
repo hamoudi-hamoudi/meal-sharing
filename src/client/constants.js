@@ -1,1 +1,1 @@
-export const webServerUrl = "https://meal-sharing-web-app.onrender.com:10000";
+export const webServerUrl = "https://meal-sharing-web-app.onrender.com";
