@@ -23,7 +23,7 @@ const mealTitle = async (title) => {
   let meals;
   if (!title) meals = await knex("meal");
   else {
-    meals = await knex("meal").where("title", "like", `%${title}%`);
+    meals = await knex("meal").where("title", "ILIKE", `%${title}%`);
   }
 
   return meals;

@@ -50,7 +50,7 @@ function Meals() {
             <option>sort by</option>
             <option value={"price"}>price</option>
             <option value={"max_reservations"}>max reservation</option>
-            <option value={"when"}>when</option>
+            <option value={"when_date"}>when</option>
           </select>
         </div>
         <div className="radio-buttons">

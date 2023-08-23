@@ -15,7 +15,7 @@ const requiredColumns = [
   "title",
   "description",
   "location",
-  "when",
+  "when_date",
   "max_reservations",
   "created_date",
   "price",
